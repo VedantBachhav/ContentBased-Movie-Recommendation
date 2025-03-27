@@ -122,7 +122,6 @@ pymango==0.1.1
 pymongo==4.3.3
 pyotp==2.9.0
 pyparsing==3.0.9
-pypiwin32==223
 pypng==0.20220715.0
 PyQRCode==1.2.1
 python-dateutil==2.8.2
