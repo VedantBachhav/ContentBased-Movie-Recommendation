@@ -1,4 +1,3 @@
 pandas==2.2.1
 streamlit==1.30.0
-pickle
 requests==2.31.0
