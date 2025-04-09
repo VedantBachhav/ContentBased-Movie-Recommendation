@@ -243,7 +243,7 @@ import pandas as pd
 import streamlit as st
 import pickle
 import requests
-
+import os
 
 # ================================
 # ✅ Fetch Poster Function
@@ -274,8 +274,9 @@ def fetch_poster(movie_id):
 def recommend(movie):
     try:
         movie_index = movies[movies['title'] == movie].index[0]
+        
         if movie_index >= len(similarity):
-            raise IndexError("Movie index is out of range for similarity list.")
+            raise IndexError(f"Movie index {movie_index} is out of range for similarity list.")
         
         distances = similarity[movie_index]
         movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:11]  # Top 10 movies
@@ -303,8 +304,8 @@ def recommend(movie):
 # ================================
 def load_pickle_file(file_path):
     try:
+        # Ensure the correct path if files are in the root or subfolders
         with open(file_path, 'rb') as f:
-            # Attempt loading pickle with 'latin1' encoding for compatibility with different Python versions
             return pickle.load(f, encoding='latin1')
     except pickle.UnpicklingError as e:
         st.error(f"Error loading pickle file: {e}")
@@ -312,7 +313,6 @@ def load_pickle_file(file_path):
     except Exception as e:
         st.error(f"General error: {e}")
         return None
-
 
 # Load movies and similarity data
 movies_dict = load_pickle_file("movies_dict.pkl")
