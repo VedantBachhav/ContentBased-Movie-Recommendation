@@ -239,11 +239,11 @@
 # # # Network/Firewall Issues:
 # # # Local firewall or VPN may block the connection.
 # #
-
 import pandas as pd
 import streamlit as st
 import pickle
 import requests
+
 
 # ================================
 # ✅ Fetch Poster Function
@@ -272,26 +272,35 @@ def fetch_poster(movie_id):
 # ✅ Recommend Function
 # ================================
 def recommend(movie):
-    movie_index = movies[movies['title'] == movie].index[0]
-    distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:11]  # Top 10 movies
+    try:
+        movie_index = movies[movies['title'] == movie].index[0]
+        if movie_index >= len(similarity):
+            raise IndexError("Movie index is out of range for similarity list.")
+        
+        distances = similarity[movie_index]
+        movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:11]  # Top 10 movies
 
-    recommended_movies = []
-    recommended_movies_posters = []
+        recommended_movies = []
+        recommended_movies_posters = []
 
-    for i in movies_list:
-        movie_id = movies.iloc[i[0]].movie_id
-        # Fetch poster from API
-        recommended_movies.append(movies.iloc[i[0]].title)
-        recommended_movies_posters.append(fetch_poster(movie_id))
+        for i in movies_list:
+            movie_id = movies.iloc[i[0]].movie_id
+            # Fetch poster from API
+            recommended_movies.append(movies.iloc[i[0]].title)
+            recommended_movies_posters.append(fetch_poster(movie_id))
 
-    return recommended_movies, recommended_movies_posters
+        return recommended_movies, recommended_movies_posters
+    except IndexError as e:
+        st.error(f"IndexError: {e}")
+        return [], []
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        return [], []
 
 
 # ================================
 # ✅ Load Movies and Similarity Parts
 # ================================
-# Handle pickle file loading with proper encoding for compatibility
 def load_pickle_file(file_path):
     try:
         with open(file_path, 'rb') as f:
@@ -300,13 +309,16 @@ def load_pickle_file(file_path):
     except pickle.UnpicklingError as e:
         st.error(f"Error loading pickle file: {e}")
         return None
+    except Exception as e:
+        st.error(f"General error: {e}")
+        return None
 
 
+# Load movies and similarity data
 movies_dict = load_pickle_file("movies_dict.pkl")
 if movies_dict is not None:
     movies = pd.DataFrame(movies_dict)
 
-# Load and merge similarity parts
 similarity_parts = []
 for i in range(1, 9):  # Loop through 8 parts
     part_similarity = load_pickle_file(f"part_{i}.pkl")
