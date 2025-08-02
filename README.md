@@ -21,9 +21,6 @@
 - [Usage](#usage)
 - [Dataset](#dataset)
 - [Model Details](#model-details)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## 🎯 Overview
@@ -193,27 +190,6 @@ The system uses the **TMDB (The Movie Database)** dataset containing:
 - **Memory Usage**: ~150MB for full dataset
 - **Accuracy**: 85% user satisfaction in testing
 
-## 📸 Screenshots
-
-### Main Interface
-<p align="center">
-  <img src="images/main_interface.png" alt="Main Interface" width="800">
-</p>
-
-### Movie Selection
-<p align="center">
-  <img src="images/movie_selection.png" alt="Movie Selection" width="800">
-</p>
-
-### Recommendations Display
-<p align="center">
-  <img src="images/recommendations.png" alt="Recommendations Display" width="800">
-</p>
-
-### Movie Details
-<p align="center">
-  <img src="images/movie_details.png" alt="Movie Details" width="800">
-</p>
 
 ## 🛠️ Technical Stack
 
@@ -241,40 +217,8 @@ ContentBased-Movie-Recommendation/
 ├── images/               # Screenshots and diagrams
 ├── models/               # Saved model files
 └── README.md            # This file
-```
 
-## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Areas for Contribution:
-- [ ] Add more movie features (runtime, budget, revenue)
-- [ ] Implement hybrid recommendation (content + collaborative)
-- [ ] Add user rating functionality
-- [ ] Improve UI/UX design
-- [ ] Add movie trailer integration
-- [ ] Implement caching for better performance
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔮 Future Enhancements
-
-- **🤖 Deep Learning Integration**: Use neural networks for better feature extraction
-- **📱 Mobile App**: Develop React Native mobile application
-- **🔍 Advanced Search**: Add filters for year, genre, rating, etc.
-- **👥 Social Features**: Allow users to share and rate recommendations
-- **🎭 Multi-language Support**: Support for multiple languages
-- **📊 Analytics Dashboard**: Add recommendation analytics and insights
-
-## 📞 Contact
 
 **Vedant Bachhav**
 - 📧 Email: vedantbachhav108@gmail.com
@@ -283,14 +227,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">
-  <img src="images/footer_banner.png" alt="Footer Banner" width="600">
-</p>
-
-<p align="center">
-  ⭐ If you found this project helpful, please give it a star! ⭐
-</p>
-
-<p align="center">
-  Made with ❤️ by Vedant Bachhav
-</p>
